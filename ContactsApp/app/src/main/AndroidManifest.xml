@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light">
         <activity
-            android:name="com.PagoContactsApp.MainActivity"
+            android:name="com.Pago.ContactsApp.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.PagoContactsApp.ProfileActivity" />
+        <activity android:name="com.Pago.ContactsApp.view.ProfileActivity" />
     </application>
 
 </manifest>

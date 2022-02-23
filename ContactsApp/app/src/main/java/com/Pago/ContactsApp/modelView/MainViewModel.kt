@@ -1,35 +1,34 @@
-package com.PagoContactsApp
+package com.Pago.ContactsApp.modelView
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.Pago.ContactsApp.model.dataModel.Contact
+import com.Pago.ContactsApp.model.repository.MainRepository
 import kotlinx.coroutines.*
 
-class ProfileViewModel
-    constructor(private val profileRepository: ProfileRepository, var userId : Int) : ViewModel() {
+class MainViewModel constructor(private val mainRepository: MainRepository) : ViewModel() {
 
     val errorMessage = MutableLiveData<String>()
-    val userPostsList = MutableLiveData<List<ProfileModel>>()
-    var job: Job? = null
+    val contactList = MutableLiveData<List<Contact>>()
+    private var job: Job? = null
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         onError("Exception handled: ${throwable.localizedMessage}")
     }
     val loading = MutableLiveData<Boolean>()
 
-    fun getAllUserPosts() {
-
+    fun getAllContacts() {
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             loading.postValue(true)
-            val response = profileRepository.getAllUserPosts(userId)
+            val response = mainRepository.getAllContacts()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    userPostsList.postValue(response.body())
+                    contactList.postValue(response.body())
                     loading.value = false
                 } else {
                     onError("Error : ${response.message()} ")
                 }
             }
         }
-
     }
 
     private fun onError(message: String) {

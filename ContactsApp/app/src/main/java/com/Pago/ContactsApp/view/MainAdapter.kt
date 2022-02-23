@@ -1,4 +1,4 @@
-package com.PagoContactsApp
+package com.Pago.ContactsApp.view
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.Pago.ContactsApp.model.dataModel.Contact
+import com.PagoContactsApp.R
 import com.amulyakhare.textdrawable.TextDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -16,7 +18,7 @@ class MainAdapter(_listener: RecycleViewClickListener)
     : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     var contactList = mutableListOf<Contact>()
-    var listener = _listener
+    private var listener = _listener
 
     fun setContacts(contacts: List<Contact>) {
         this.contactList = contacts.toMutableList()
@@ -34,7 +36,7 @@ class MainAdapter(_listener: RecycleViewClickListener)
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
 
         val contact = contactList[position]
-        var contactNameTextView: TextView = holder.itemView.findViewById(R.id.id_name)
+        val contactNameTextView: TextView = holder.itemView.findViewById(R.id.id_name)
         contactNameTextView.text = contact.name
         if(position % 2 == 0){
             Glide.with(holder.itemView.context)
@@ -44,15 +46,15 @@ class MainAdapter(_listener: RecycleViewClickListener)
         }
         else {
             val contactName: String = contactList[position].name
-            var userLogoText: String  = contactName
+            val userLogoText: String  = contactName
                 .split(" ")
                 .filter { word -> !word.contains(".") }
                 .map { word -> word[0] }
                 .joinToString("")
                 .uppercase()
-            var drawable: TextDrawable = TextDrawable.builder()
+            val drawable: TextDrawable = TextDrawable.builder()
                 .buildRound(userLogoText, Color.RED)
-            var image: ImageView = holder.itemView.findViewById(R.id.iv_image)
+            val image: ImageView = holder.itemView.findViewById(R.id.iv_image)
             image.setImageDrawable(drawable)
         }
 
@@ -65,7 +67,7 @@ class MainAdapter(_listener: RecycleViewClickListener)
 
 
     class MainViewHolder(itemView: View, _listener: RecycleViewClickListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        var listener = _listener;
+        private var listener = _listener
 
         init{
             itemView.setOnClickListener(this)

@@ -1,7 +1,9 @@
-package com.PagoContactsApp
+package com.Pago.ContactsApp.modelView.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.Pago.ContactsApp.model.repository.MainRepository
+import com.Pago.ContactsApp.modelView.MainViewModel
 
 class MainViewModelFactory constructor(private val repository: MainRepository): ViewModelProvider.Factory {
 

@@ -1,4 +1,4 @@
-package com.PagoContactsApp
+package com.Pago.ContactsApp.model.dataModel
 
 data class Contact (
     val id: Int,

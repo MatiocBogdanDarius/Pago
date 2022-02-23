@@ -1,5 +1,7 @@
-package com.PagoContactsApp
+package com.Pago.ContactsApp.model
 
+import com.Pago.ContactsApp.model.dataModel.Contact
+import com.Pago.ContactsApp.model.dataModel.ProfileModel
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,10 +16,8 @@ interface RetrofitService {
     @GET("users")
     suspend fun getAllContacts() : Response<List<Contact>>
 
-
-
     companion object {
-        var retrofitService: RetrofitService? = null
+        private var retrofitService: RetrofitService? = null
         fun getInstance() : RetrofitService {
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
@@ -28,6 +28,5 @@ interface RetrofitService {
             }
             return retrofitService!!
         }
-
     }
 }
